@@ -1,9 +1,13 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { IpfsModule } from './ipfs/ipfs.module';
+import { ContractModule } from './contract/contract.module';
+import { UserModule } from './user/user.module';
+import { AudioModule } from './audio/audio.module';
 
 @Module({
-  imports: [],
+  imports: [IpfsModule, ContractModule, UserModule, AudioModule],
   controllers: [AppController],
   providers: [AppService],
 })
