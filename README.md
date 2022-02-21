@@ -38,4 +38,42 @@ npm run start:dev // 서버 실행하기
 }
 ```
 
+2. Sign In
+- api : http://localhost:8000/api/v1/user/signin
+- req.body : 
+```json
+// json / formdata
+{
+    "email" : "test1@domain.com",
+    "password" : "test1",
+    "metamaskId" : "test1"
+}
+```
+- res.body :
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGRvbWFpbi5jb20iLCJtZXRhbWFza0lkIjoidGVzdDIiLCJzdWIiOiI2MjEzNDBjNDVhNDIyY2E0ZjVlMGRjMDIiLCJpYXQiOjE2NDU0MzQzMDgsImV4cCI6MTY0NTQzNzkwOH0.O3K5Frt-GfOYbYG1XjkQ7_OFKfEC4ZceEsZEgnefolg"
+}
+}
+```
 
+
+
+3. Current User
+- api : http://localhost:8000/api/v1/user/current
+- req.header :
+```json
+// json / formdata
+{
+    "Authorization" : "Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGRvbWFpbi5jb20iLCJtZXRhbWFza0lkIjoidGVzdDIiLCJzdWIiOiI2MjEzNDBjNDVhNDIyY2E0ZjVlMGRjMDIiLCJpYXQiOjE2NDU0MzQzMDgsImV4cCI6MTY0NTQzNzkwOH0.O3K5Frt-GfOYbYG1XjkQ7_OFKfEC4ZceEsZEgnefolg"
+}
+```
+- res.body :
+```json
+{
+    "id": "621340c45a422ca4f5e0dc02",
+    "email": "test2@domain.com",
+    "nickname": "test2",
+    "metamaskId": "test2"
+}
+```
