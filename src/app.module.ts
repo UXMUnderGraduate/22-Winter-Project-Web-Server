@@ -24,7 +24,6 @@ import { AuthModule } from './auth/auth.module';
     UserModule,
     AudioModule,
     BloomfilterModule,
-    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

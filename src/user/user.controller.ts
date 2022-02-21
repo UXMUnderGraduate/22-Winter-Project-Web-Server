@@ -17,13 +17,13 @@ import { SignInUserDto } from './dto/signin-user.dto';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
+  @Post('signup')
   signUp(@Body() createUserDto: CreateUserDto) {
     console.log(createUserDto);
     return this.userService.signUp(createUserDto);
   }
 
-  @Post()
+  @Post('signin')
   signIn(@Body() signInUserDto: SignInUserDto) {
     return this.userService.signIn(signInUserDto);
   }
