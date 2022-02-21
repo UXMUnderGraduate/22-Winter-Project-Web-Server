@@ -7,11 +7,16 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { SignInUserDto } from './dto/signin-user.dto';
+import { JwtAuthGuard } from 'src/auth/jwt/jwt.guard';
+import { Request } from 'express';
+import { CurrentUser } from 'src/common/decorators/user.decorator.ts';
 
 @Controller('user')
 export class UserController {
@@ -28,6 +33,11 @@ export class UserController {
     return this.userService.signIn(signInUserDto);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Get('current')
+  getCurrentUser(@CurrentUser() user) {
+    return user.readOnlyData;
+  }
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.userService.findOne(id);
