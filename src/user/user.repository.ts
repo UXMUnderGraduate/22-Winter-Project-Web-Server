@@ -33,5 +33,7 @@ export class UserRepository {
     return await this.userModel.create(createUserDto);
   }
 
-  async signIn(signInUserDto: SignInUserDto);
+  async signIn(signInUserDto: SignInUserDto) {
+    return await this.userModel.findOne();
+  }
 }
