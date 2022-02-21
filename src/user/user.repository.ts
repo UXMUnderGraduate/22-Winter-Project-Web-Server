@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schemas/user.schema';
 import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
+import { SignInUserDto } from './dto/signin-user.dto';
 
 @Injectable()
 export class UserRepository {
@@ -30,5 +31,9 @@ export class UserRepository {
 
   async create(createUserDto: CreateUserDto) {
     return await this.userModel.create(createUserDto);
+  }
+
+  async findUserByEmail(email: string) {
+    return await this.userModel.findOne({ email });
   }
 }
