@@ -30,6 +30,7 @@ export class BloomfilterController {
     return this.bloomfilterService.check(sign);
   }
 
+
   // @Patch(':id')
   // update(
   //   @Param('id') id: string,

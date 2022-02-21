@@ -3,6 +3,7 @@ import { CreateBloomfilterDto } from './dto/create-bloomfilter.dto';
 import { UpdateBloomfilterDto } from './dto/update-bloomfilter.dto';
 import { BloomFilter } from 'bloom-filters';
 import BaseFilter from 'bloom-filters/dist/base-filter';
+import { filter } from 'rxjs';
 
 @Injectable()
 export class BloomfilterService {
@@ -20,6 +21,7 @@ export class BloomfilterService {
       return false;
     }
   }
+  
 
   // findAll() {
   //   return `This action returns all bloomfilter`;
