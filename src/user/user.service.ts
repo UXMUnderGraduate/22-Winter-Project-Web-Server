@@ -4,6 +4,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './schemas/user.schema';
 import * as bcrypt from 'bcrypt';
 import { UserRepository } from './user.repository';
+import { SignInUserDto } from './dto/signin-user.dto';
 
 @Injectable()
 export class UserService {
@@ -36,8 +37,8 @@ export class UserService {
     return user.readOnlyData;
   }
 
-  findAll() {
-    return `This action returns all user`;
+  signIn(signInUserDto: SignInUserDto) {
+    return this.userRepository.signIn(signInUserDto);
   }
 
   findOne(id: number) {

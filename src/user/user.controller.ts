@@ -11,6 +11,7 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { SignInUserDto } from './dto/signin-user.dto';
 
 @Controller('user')
 export class UserController {
@@ -22,9 +23,9 @@ export class UserController {
     return this.userService.signUp(createUserDto);
   }
 
-  @Get()
-  findAll() {
-    return this.userService.findAll();
+  @Post()
+  signIn(@Body() signInUserDto: SignInUserDto) {
+    return this.userService.signIn(signInUserDto);
   }
 
   @Get(':id')
