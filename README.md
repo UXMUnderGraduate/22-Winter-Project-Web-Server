@@ -62,7 +62,6 @@ npm run start:dev // 서버 실행하기
 - api : http://localhost:8000/api/v1/user/current
 - req.header :
 ```json
-// json / formdata
 {
     "Authorization" : "Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGRvbWFpbi5jb20iLCJtZXRhbWFza0lkIjoidGVzdDIiLCJzdWIiOiI2MjEzNDBjNDVhNDIyY2E0ZjVlMGRjMDIiLCJpYXQiOjE2NDU0MzQzMDgsImV4cCI6MTY0NTQzNzkwOH0.O3K5Frt-GfOYbYG1XjkQ7_OFKfEC4ZceEsZEgnefolg"
 }
@@ -76,3 +75,7 @@ npm run start:dev // 서버 실행하기
     "metamaskId": "test2"
 }
 ```
+
+
+## 목적
+- ***목적을 작성해주세요.***
