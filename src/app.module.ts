@@ -11,6 +11,7 @@ import { ConfigModule } from '@nestjs/config';
 import * as mongoose from 'mongoose';
 import { LoggerMiddleware } from './logger.middleware';
 import { AuthModule } from './auth/auth.module';
+import { SoundtrackModule } from './soundtrack/soundtrack.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { AuthModule } from './auth/auth.module';
     UserModule,
     AudioModule,
     BloomfilterModule,
+    SoundtrackModule,
   ],
   controllers: [AppController],
   providers: [AppService],
