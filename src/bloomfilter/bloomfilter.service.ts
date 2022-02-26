@@ -7,21 +7,28 @@ import { filter } from 'rxjs';
 
 @Injectable()
 export class BloomfilterService {
+  fs = require('fs');
+
   // 블룸필터 객체 하나 생성
-  bf = new BloomFilter(16, 3);
+  create() {
+    const bf = new BloomFilter(16, 3);
+    const exported = bf.saveAsJSON();
+    const data = JSON.stringify(exported);
+    this.fs.WriteFile('bloomfilter.json', data);
+  }
 
   // 받아온 시그니쳐 파일이 이미 블룸필터에 있는지 확인
   // 없으면 add후 true 반환, 있으면 false만 반환
   check(sign: string) {
-    const has = this.bf.has(sign);
+    const bf = require('./bloomfilter.json');
+    const has = bf.has(sign);
     if (has === false) {
-      this.bf.add(sign);
+      bf.add(sign);
       return true;
     } else {
       return false;
     }
   }
-  
 
   // findAll() {
   //   return `This action returns all bloomfilter`;
