@@ -24,12 +24,15 @@ export class BloomfilterController {
   // findAll() {
   //   return this.bloomfilterService.findAll();
   // }
+  @Get()
+  create() {
+    return this.bloomfilterService.create();
+  }
 
   @Get(':sign')
   check(@Param('sign') sign: string) {
     return this.bloomfilterService.check(sign);
   }
-
 
   // @Patch(':id')
   // update(
