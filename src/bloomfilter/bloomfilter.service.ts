@@ -32,9 +32,9 @@ export class BloomfilterService {
       fs.writeFile('bloomfilter.json', data, function (err, result) {
         if (err) console.log('error', err);
       });
-      return 'true';
+      return true;
     } else {
-      return 'false';
+      return false;
     }
   }
 

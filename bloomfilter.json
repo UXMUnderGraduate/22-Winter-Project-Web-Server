@@ -1,1 +1,1 @@
-{"type":"BloomFilter","_size":16,"_nbHashes":3,"_filter":[0,0,1,0,0,0,0,1,1,0,0,0,1,0,0,1],"_length":5,"_seed":78187493520}
+{"type":"BloomFilter","_size":16,"_nbHashes":3,"_filter":[0,0,1,0,1,0,0,1,1,0,0,0,1,0,0,1],"_length":6,"_seed":78187493520}
