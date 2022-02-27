@@ -10,8 +10,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import * as mongoose from 'mongoose';
 import { LoggerMiddleware } from './logger.middleware';
-import { AuthModule } from './auth/auth.module';
-import { SoundtrackModule } from './soundtrack/soundtrack.module';
+import { MusicModule } from './music/music.module';
 
 @Module({
   imports: [
@@ -25,7 +24,7 @@ import { SoundtrackModule } from './soundtrack/soundtrack.module';
     UserModule,
     AudioModule,
     BloomfilterModule,
-    SoundtrackModule,
+    MusicModule,
   ],
   controllers: [AppController],
   providers: [AppService],
@@ -34,6 +33,6 @@ export class AppModule implements NestModule {
   private readonly isDev = process.env.MODE === 'dev' ? true : false;
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(LoggerMiddleware).forRoutes('*');
-    mongoose.set('debug', this.isDev);
+    // mongoose.set('debug', this.isDev);
   }
 }
