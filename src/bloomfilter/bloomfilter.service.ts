@@ -6,7 +6,7 @@ import BaseFilter from 'bloom-filters/dist/base-filter';
 import { filter } from 'rxjs';
 
 @Injectable()
-export class BloomfilterService {
+export class BloomfilterService { 
   // 블룸필터 객체 하나 생성
   create() {
     const fs = require('fs');
