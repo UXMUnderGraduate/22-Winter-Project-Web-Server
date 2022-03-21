@@ -4,12 +4,20 @@ import { CreateMusicDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';
 import { User } from 'src/user/schemas/user.schema';
 import { web3Generator } from 'src/common/web3';
+import { FingerprintService } from 'src/fingerprint/fingerprint.service';
 // import * as contractJson from './solidity/music.json';
 
 @Injectable()
 export class MusicService {
-  constructor(private readonly userRepository: UserRepository) {}
-  async create(createMusicDto: CreateMusicDto, user: User) {
+  constructor(
+    private readonly userRepository: UserRepository,
+    private readonly fingerprintService: FingerprintService,
+  ) {}
+  async register(
+    createMusicDto: CreateMusicDto,
+    user: User,
+    file: Express.Multer.File,
+  ) {
     // const web3 = web3Generator.getInstance();
     // const contractJson = JSON.parse('./solidity/music.json');
     // const contractABI = contractJson['abi'];
@@ -70,6 +78,9 @@ export class MusicService {
     const playerRoyalty = (price * playerRoyaltyRate) / 100;
     const agencyRoyalty = (price * agencyRoyaltyRate) / 100;
 
+    // 시그니처 해시 값 구하기
+    const response = await this.fingerprintService.getFingerPrint(file);
+    console.log(response);
     // 컨트랙트 객체 생성
     // const contract = new web3.eth.Contract(contractABI);
 

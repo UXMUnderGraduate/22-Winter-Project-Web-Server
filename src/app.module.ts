@@ -11,6 +11,7 @@ import { ConfigModule } from '@nestjs/config';
 import * as mongoose from 'mongoose';
 import { LoggerMiddleware } from './logger.middleware';
 import { MusicModule } from './music/music.module';
+import { FingerprintModule } from './fingerprint/fingerprint.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { MusicModule } from './music/music.module';
     AudioModule,
     BloomfilterModule,
     MusicModule,
+    FingerprintModule,
   ],
   controllers: [AppController],
   providers: [AppService],
