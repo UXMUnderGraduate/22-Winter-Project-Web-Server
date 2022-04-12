@@ -5,10 +5,12 @@ import { UpdateMusicDto } from './dto/update-music.dto';
 import { User } from 'src/user/schemas/user.schema';
 import { web3Generator } from 'src/common/web3';
 import { FingerprintService } from 'src/fingerprint/fingerprint.service';
+import { AuthService } from 'src/auth/auth.service';
 // import * as contractJson from './solidity/music.json';
 
 @Injectable()
 export class MusicService {
+  // TODO: 순환 참조 문제가 있음. // private readonly authService: AuthService,
   constructor(
     private readonly userRepository: UserRepository,
     private readonly fingerprintService: FingerprintService,
@@ -79,6 +81,7 @@ export class MusicService {
     const agencyRoyalty = (price * agencyRoyaltyRate) / 100;
 
     // 시그니처 해시 값 구하기
+    console.log(file);
     const response = await this.fingerprintService.getFingerPrint(file);
     console.log(response);
     // 컨트랙트 객체 생성
@@ -114,8 +117,12 @@ export class MusicService {
     return `This action returns all music`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} music`;
+  findOne(musicId: number) {
+    // this.blockchainService
+    // return `This action returns a #${musicId} music`;
+    return {
+      transactionAddress:"transactionAddress"
+    }
   }
 
   update(id: number, updateMusicDto: UpdateMusicDto) {
@@ -124,5 +131,22 @@ export class MusicService {
 
   remove(id: number) {
     return `This action removes a #${id} music`;
+  }
+
+  buy(user: User, musicId: number) {
+    const music = this.findOne(musicId);
+    // mock -> 가짜 객체를 만든다. 내가 원하는 리턴값이 무조건 옴.
+    const resultTransactionAddress = this.myblockchainServicecall(music["transacionAddress"]); // 구현이 필요하다.
+    if (resultTransactionAddress == null ) {
+      return ;
+    }
+    
+    return this.jwtService.sign(musicId, {
+      secret: process.env.AUTH_JWT_SECRET_KEY,
+    }
+  }
+
+  myblockchainServicecall(transactionAddress:String):String {
+    return "resultTransactionAddress";
   }
 }

@@ -18,6 +18,7 @@ export class FingerprintService {
         })
         .pipe(
           map((res) => {
+            console.log(`signature hash : ${res.data.data}`);
             return res.data;
           }),
         ),

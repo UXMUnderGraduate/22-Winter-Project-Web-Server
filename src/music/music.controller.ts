@@ -9,6 +9,7 @@ import {
   UseGuards,
   UseInterceptors,
   UploadedFile,
+  UsePipes,
 } from '@nestjs/common';
 import { MusicService } from './music.service';
 import { CreateMusicDto } from './dto/create-music.dto';
@@ -22,7 +23,8 @@ export class MusicController {
   constructor(private readonly musicService: MusicService) {}
 
   @UseGuards(JwtAuthGuard)
-  @UseInterceptors(FileInterceptor('files'))
+  @UseInterceptors(FileInterceptor('audiofile'))
+  @UsePipes()
   @Post()
   register(
     @Body() createMusicDto: CreateMusicDto,

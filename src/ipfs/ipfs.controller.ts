@@ -1,34 +1,26 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Param,
+  UseInterceptors,
+  UploadedFile,
+} from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { IpfsService } from './ipfs.service';
-import { CreateIpfDto } from './dto/create-ipf.dto';
-import { UpdateIpfDto } from './dto/update-ipf.dto';
 
 @Controller('ipfs')
 export class IpfsController {
   constructor(private readonly ipfsService: IpfsService) {}
 
+  @UseInterceptors(FileInterceptor('audiofile'))
   @Post()
-  create(@Body() createIpfDto: CreateIpfDto) {
-    return this.ipfsService.create(createIpfDto);
+  upload(@UploadedFile() file: Express.Multer.File) {
+    return this.ipfsService.upload(file);
   }
 
-  @Get()
-  findAll() {
-    return this.ipfsService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.ipfsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateIpfDto: UpdateIpfDto) {
-    return this.ipfsService.update(+id, updateIpfDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.ipfsService.remove(+id);
+  @Get(':cid')
+  download(@Param('cid') cid: string) {
+    return this.ipfsService.download(cid);
   }
 }

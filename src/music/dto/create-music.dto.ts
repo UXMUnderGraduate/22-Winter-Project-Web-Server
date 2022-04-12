@@ -30,4 +30,6 @@ export class CreateMusicDto extends PickType(Music, [
   @IsNumber()
   @IsNotEmpty()
   agencyRoyaltyRate: number;
+
+  audiofile: any;
 }
