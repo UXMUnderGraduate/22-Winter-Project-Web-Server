@@ -3,13 +3,10 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schemas/user.schema';
 import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
-import { SignInUserDto } from './dto/signin-user.dto';
 
 @Injectable()
 export class UserRepository {
-  constructor(
-    @InjectModel(User.name) private readonly userModel: Model<User>,
-  ) {}
+  constructor(@InjectModel(User.name) private readonly userModel: Model<User>) {}
 
   async existsByEmail(email: string) {
     try {

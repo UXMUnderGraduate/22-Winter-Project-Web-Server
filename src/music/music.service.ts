@@ -121,8 +121,8 @@ export class MusicService {
     // this.blockchainService
     // return `This action returns a #${musicId} music`;
     return {
-      transactionAddress:"transactionAddress"
-    }
+      transactionAddress: 'transactionAddress',
+    };
   }
 
   update(id: number, updateMusicDto: UpdateMusicDto) {
@@ -131,22 +131,5 @@ export class MusicService {
 
   remove(id: number) {
     return `This action removes a #${id} music`;
-  }
-
-  buy(user: User, musicId: number) {
-    const music = this.findOne(musicId);
-    // mock -> 가짜 객체를 만든다. 내가 원하는 리턴값이 무조건 옴.
-    const resultTransactionAddress = this.myblockchainServicecall(music["transacionAddress"]); // 구현이 필요하다.
-    if (resultTransactionAddress == null ) {
-      return ;
-    }
-    
-    return this.jwtService.sign(musicId, {
-      secret: process.env.AUTH_JWT_SECRET_KEY,
-    }
-  }
-
-  myblockchainServicecall(transactionAddress:String):String {
-    return "resultTransactionAddress";
   }
 }

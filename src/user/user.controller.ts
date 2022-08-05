@@ -1,21 +1,19 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
   ParseIntPipe,
+  Patch,
+  Post,
   UseGuards,
-  Req,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { SignInUserDto } from './dto/signin-user.dto';
 import { JwtAuthGuard } from 'src/auth/jwt/jwt.guard';
-import { Request } from 'express';
 import { CurrentUser } from 'src/common/decorators/user.decorator.ts';
 
 @Controller('user')
@@ -38,6 +36,7 @@ export class UserController {
   getCurrentUser(@CurrentUser() user) {
     return user.readOnlyData;
   }
+
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.userService.findOne(id);
@@ -46,6 +45,11 @@ export class UserController {
   @Get('/metamask/:id')
   findMetamaskOne(@Param('id') id: string) {
     return this.userService.findMetamaskOne(id);
+  }
+
+  @Get('/email/:address')
+  findOneByEmail(@Param('address') emailAddress: string) {
+    return this.userService.findOneByEmail(emailAddress);
   }
 
   @Patch(':id')

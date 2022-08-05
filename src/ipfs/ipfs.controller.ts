@@ -13,7 +13,7 @@ import { IpfsService } from './ipfs.service';
 export class IpfsController {
   constructor(private readonly ipfsService: IpfsService) {}
 
-  @UseInterceptors(FileInterceptor('audiofile'))
+  @UseInterceptors(FileInterceptor('audioFile'))
   @Post()
   upload(@UploadedFile() file: Express.Multer.File) {
     return this.ipfsService.upload(file);
